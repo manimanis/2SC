@@ -521,6 +521,110 @@ else:
           </div>
         </div>
       </section>
+
+      <section>
+        <h3>Structures itératives</h3>
+
+        <h4>Structure Itérative complète</h4>
+        
+        <h5>Forme 1</h5>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">n &larr; 10
+Pour i de 0 à n-1 Faire
+  Ecrire(i)
+Fin Pour</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">n = 10
+for i in range(n):
+  print(i)
+ </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h5>Forme 2</h5>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">a &larr; 10
+b &larr; 20
+Pour i de a à b Faire
+  Ecrire(i)
+Fin Pour</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">a = 10
+b = 20
+for i in range(a, b+1):
+  print(i)
+ </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h5>Forme 3</h5>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">a &larr; 15
+b &larr; 27
+p &larr; 3
+Pour i de a à b (pas = p) Faire
+  Ecrire(i)
+Fin Pour</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">a = 15
+b = 27
+p = 3
+for i in range(a, b+1, p):
+  print(i)
+ </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h4>Structure Itérative à condition d'arrêt</h4>
+        
+        <h5>Forme générale</h5>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">Répéter
+  // traitements
+
+Jusqu'à [condition d'arrêt]</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">while True:
+  # traitements
+  if [condition d'arrêt]:
+    break</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h4>Structure Itérative à condition de marche</h4>
+        
+        <h5>Forme générale</h5>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">Tant que [condition de marche] Faire
+  // traitements
+Fin Tant Que</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">while [condition de marche]:
+  # traitements
+ </code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
     </article>
 
     <article>
