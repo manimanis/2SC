@@ -1,0 +1,279 @@
+body {
+  counter-reset: figures;
+}
+
+main {
+  min-height: 100vh;
+}
+
+h1 {
+  color: #e91e63;
+  text-align: center;
+}
+
+h2 {
+  color:#3F51B5;
+  text-align: center;
+}
+
+h3 {
+  color: #009688;
+}
+
+.explication {
+  color: #e91e63;
+  font-weight: bold;
+  font-style: italic;
+}
+
+figcaption::before {
+  content: "Figure " counter(figures) ", ";
+}
+
+figcaption {
+  counter-increment: figures;
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+
+figure {
+  text-align: center;
+}
+
+img, video {
+  max-width: 100%;
+}
+
+.alert.alert-warning.warning-sign {
+  background-image: url(../images/warning-sign.svg);
+  background-repeat: no-repeat;
+  padding-left: 160px;
+  min-height: 150px;
+}
+
+.draggable-item {
+  cursor: grab;
+}
+
+.drop-target {
+  min-height: 3rem;
+}
+
+.drag-enter {
+  border-color: #cd0000 !important;
+  background-color: #e91e63 !important;
+}
+
+.ordered-items-exercise {
+  page-break-inside: avoid;
+}
+
+.ordered-items .numbered.list-group-item::before {
+  content: counter(listgroupitem) ".";
+  margin: 0 0.5rem;
+}
+
+.ordered-items .list-group-item {
+  counter-increment: listgroupitem;
+}
+
+.index-page-link {
+	display: block;
+	font-size: 40pt;
+	padding: 2rem;
+	margin: 1rem 0;
+	font-weight: bolder;
+}
+
+.language-algorithm::before, .language-python::before {
+  display: block;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.language-algorithm::before {
+  content: "Algorithme";
+}
+
+.language-python::before {
+  content: "Python";
+}
+
+pre > code.shell.python.nohighlight {
+  display: block;
+  background-color: #333;
+  color: #eee;
+  padding: 0.5rem;
+}
+
+.shell.python::before {
+	display: block;
+	content: attr(data-text);
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: underline;
+	text-align: center;
+}
+
+.bd-clipboard {
+  position: relative;
+  width: 100%;
+}
+
+.btn-clipboard {
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  border: 0;
+  background-color: transparent;
+  color: var(--light);
+}
+
+.no-page-break-inside {
+  page-break-inside: avoid;
+}
+
+.brique, .sous-brique, .brique-experiment, .brique-algorithm {
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+.brique {
+  background-image: url(../images/lego-icon-02.png);
+  color: #3900c5;
+}
+
+.sous-brique {
+  background-image: url(../images/lego-icon-03.png);
+  color: #cd0000;
+}
+
+.brique-experiment {
+  background-image: url(../images/lego-icon-04.png);
+  color: #005a0e;
+}
+
+.brique-algorithm {
+  background-image: url(../images/algorithm.svg);
+  color: #009688;
+}
+
+/*----------------------------------------------------------------------------*/
+
+.bricks-canvas {
+  min-width: 400px;
+}
+
+.bricks-canvas .brick, .brick-container {
+  margin: 2px;
+  padding: 3px;
+  border-radius: 5px;
+  border: #333 solid 1px;
+  display: inline-block;
+}
+
+.bricks-canvas .brick.assignment {
+  background-color: brown;
+  color: white;
+}
+
+.bricks-canvas .brick.identifier, .bricks-canvas .brick.function {
+  background-color: cadetblue;
+  color: #000;
+}
+
+.bricks-canvas .brick.string, .bricks-canvas .brick.number {
+  background-color: chartreuse;
+  color: #000;
+}
+
+.bricks-canvas .brick.string::before, .bricks-canvas .brick.string::after {
+  content: '"';
+}
+
+.brick-container {
+  border-width: 1px;
+  border-color: var(--light);
+}
+
+.internal-brick {
+  min-height: 1.6rem;
+  display: inline-block;
+  text-align: initial;
+  padding: 0.5rem;
+}
+
+.brick-container.drop-target {  
+  min-height: initial;
+}
+
+.internal-brick>.brick-container:empty {
+  min-width: 4rem;
+  background-color: var(--gray-dark);
+}
+
+.internal-brick>.brick-container:empty::after {
+  content: "-";
+}
+
+.blk-container {
+  padding: 0.5rem;
+}
+
+.blk-container .internal-brick {
+  margin: 0.25rem;
+}
+
+.bricks-canvas .badge {
+  font-size: 0.8rem;
+}
+
+/*************************************************************************************/
+
+.save-content-pre {
+  background-color: var(--light);
+  color: var(--dark);
+  padding: .375rem .75rem;
+  border-radius: 0.25rem;
+}
+
+/************************************************************************************/
+
+.propositions label {
+  margin-bottom: initial;
+}
+
+.qcm-exercise .badge {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  display: block;
+}
+
+/***/
+@media print {
+  body {
+    min-width: initial !important;
+    max-width: initial !important;
+    width: initial !important;
+  }
+
+  .container {
+    min-width: initial !important;
+    max-width: initial !important;
+    width: initial !important;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

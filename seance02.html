@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'algorithmique & la programmation</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/default.css">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <header class="py-2 px-4 bg-secondary">
+    <div class="user-input-saver text-white">
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Nom & Prénom</label>
+          <input type="text" class="form-control save-content" placeholder="Nom & Prénom">
+        </div>
+        <div class="col-sm-6">
+          <label>Classe</label>
+          <select class="form-control save-content" placeholder="Classe">
+            <option>2TI</option>
+            <option>2SC</option>
+            <option>3T</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+  <aside>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#aside_navbar"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="aside_navbar"></div>
+    </nav>
+  </aside>
+  <main class="container">
+    <h1>L'algorithmique et la programmation</h1>
+
+    <article>
+      <h2>Introduction</h2>
+
+      <section>
+        <h3>Activité débranchée 1</h3>
+
+        <p>L'enseignant est au tableau, il demande à un élève de l'aider à jouer une petite pièce de théatre :
+          L'ordinateur et l'utilisateur.</p>
+        <p>Dans cette pièce de théatre, l'enseignant <strong>PC</strong> pose des questions à l'élève
+          <strong>utilisateur</strong> sur le tableau. Ce dernier doit répondre en écrivant ses réponse sur le tableau
+          à l'aide d'une autre couleur.</p>
+        <p class="explication">Exemple de scénario n°1</p>
+        <ul>
+          <li>L'enseignant : <em>Quel est votre nom ? </em></li>
+          <li>L'élève : <em class="text-success">Mohamed</em></li>
+          <li>L'enseignant : <em>Quel est votre age ? </em></li>
+          <li>L'élève : <em class="text-success">15</em></li>
+          <li>L'enseignant : <em>Bienvenue <span class="text-success">Mohamed</span>, a <span
+                class="text-success">15</span> ans vous êtes <span class="text-success">mineur</span>.</em></li>
+        </ul>
+        <p class="explication">Exemple de scénario n°1</p>
+        <ul>
+          <li>L'enseignant : <em>Quel est votre nom ? </em></li>
+          <li>L'élève : <em class="text-success">Ayoub</em></li>
+          <li>L'enseignant : <em>Quel est votre age ? </em></li>
+          <li>L'élève : <em class="text-success">20</em></li>
+          <li>L'enseignant : <em>Bienvenue <span class="text-success">Ayoub</span>, a <span
+                class="text-success">20</span> ans vous êtes <span class="text-success">majeur</span>.</em></li>
+        </ul>
+        <p>Quel est le nombre d'actions dans ce scénario ?</p>
+        <div class="mt-1 mb-4 p-1">
+          <input type="text" class="form-control save-content" placeholder="Votre réponse..."></textarea>
+        </div>
+
+        <p>Quelles sont les actions faites par le PC, lors de ce scénario ?</p>
+        <div class="mt-1 mb-4 p-1">
+          <textarea class="form-control save-content" cols="30" rows="2" placeholder="Votre code ici..."></textarea>
+        </div>
+
+        <p>Comment appelle-t-on ces actions ?</p>
+        <div class="mt-1 mb-4 p-1">
+          <input type="text" class="form-control save-content" placeholder="Votre réponse..."></textarea>
+        </div>
+      </section>
+
+      <section>
+        <h3>Activité débranchée 2</h3>
+
+        <p>Deux élèves au tableau, l'un joue le rôle du patissier, l'autre le rôle du client.</p>
+
+        <p class="explication">Exemple de scénario n°1</p>
+        <ul>
+          <li>Le patissier : <em>Bonjour monsieur/mlle, bienvenue dans notre Patisserie</em></li>
+          <li>Le patissier : <em>Le pain au chocolat est 700 millimes par pièce.</em></li>
+          <li>Le patissier : <em>Combien en voulez-vous ?</em></li>
+          <li>Le client : <em class="text-success">4</em></li>
+          <li>Le patissier : <em>Cela fait <span class="text-success">2800</span> les <span
+                class="text-success">4</span> pièces.</em></li>
+          <li>Le patissier attend que le client lui donne l'argent.</li>
+          <li>Le client : <em class="text-success">5000</em></li>
+          <li>Le patissier : <em>Voici votre monnaie <span class="text-success">2200</span> millimes.</em></li>
+        </ul>
+
+        <p class="explication">Exemple de scénario n°2</p>
+        <ul>
+          <li>Le patissier : <em>Bonjour monsieur/mlle, bienvenue dans notre Patisserie</em></li>
+          <li>Le patissier : <em>Le pain au chocolat est 700 millimes par pièce.</em></li>
+          <li>Le patissier : <em>Combien en voulez-vous ?</em></li>
+          <li>Le client : <em class="text-success">3</em></li>
+          <li>Le patissier : <em>Cela fait <span class="text-success">2100</span> les <span
+                class="text-success">3</span> pièces.</em></li>
+          <li>Le patissier attend que le client lui donne l'argent.</li>
+          <li>Le client : <em class="text-success">1500</em></li>
+          <li>Le patissier : <em>SVP, il manque encore <span class="text-success">600</span> millimes.</em></li>
+        </ul>
+
+        <p class="explication">Exemple de scénario n°3</p>
+        <ul>
+          <li>Le patissier : <em>Bonjour monsieur/mlle, bienvenue dans notre Patisserie</em></li>
+          <li>Le patissier : <em>Le pain au chocolat est 700 millimes par pièce.</em></li>
+          <li>Le patissier : <em>Combien en voulez-vous ?</em></li>
+          <li>Le client : <em class="text-success">10</em></li>
+          <li>Le patissier : <em>Cela fait <span class="text-success">7000</span> les <span
+                class="text-success">10</span> pièces.</em></li>
+          <li>Le patissier attend que le client lui donne l'argent.</li>
+          <li>Le client : <em class="text-success">7000</em></li>
+          <li>Le patissier : <em>Merci pour votre visite.</em></li>
+        </ul>
+
+        <p>Quel est le nombre d'actions dans ce scénario ?</p>
+        <div class="mt-1 mb-4 p-1">
+          <input type="text" class="form-control save-content" placeholder="Votre réponse..."></textarea>
+        </div>
+
+        <p>Ecrire l'algorithme de ce scénario ?</p>
+        <div class="mt-1 mb-4 p-1">
+          <textarea class="form-control save-content" cols="30" rows="2" placeholder="Votre code ici..."></textarea>
+        </div>
+      </section>
+    </article>
+  </main>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/highlight.pack.js"></script>
+  <script src="scripts/hljs.algorithm.js"></script>
+  <script src="scripts/draggable.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+  <script src="scripts/pages.js"></script>
+  <script src="scripts/savecontent.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    document.querySelectorAll('.language-algorithm,.language-python')
+      .forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bd-clipboard d-print-none';
+        const btn = document.createElement('button');
+        btn.className = 'btn-clipboard';
+        btn.textContent = "📋";
+        btn.title = "Copier";
+        div.appendChild(btn);
+        item.parentElement.insertBefore(div, item);
+      });
+    new ClipboardJS('.btn-clipboard', {
+      target: (trigger) => {
+        return trigger.parentElement.nextElementSibling;
+      }
+    });
+    $(() => {
+      const localStore = new PagePersistance();
+      const serverStore = new ServerSaves('Projet X');
+      const userInputSaver = new UserInputSaver(
+        document.querySelector('.user-input-saver'),
+        localStore,
+        serverStore);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le lièvre et la Tortue</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/default.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/seance03.css">
+</head>
+
+<body>
+  <header class="py-2 px-4 bg-secondary">
+    <div class="user-input-saver text-white">
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Nom & Prénom</label>
+          <input type="text" class="form-control save-content" placeholder="Nom & Prénom">
+        </div>
+        <div class="col-sm-6">
+          <label>Classe</label>
+          <select class="form-control save-content" placeholder="Classe">
+            <option>2TI</option>
+            <option>2SC</option>
+            <option>3T</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+  <aside>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#aside_navbar"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="aside_navbar"></div>
+    </nav>
+  </aside>
+  <main class="container">
+    <h1>Le Lièvre et la Tortue</h1>
+
+    <article>
+      <h2>Principe du Jeu</h2>
+
+      <section>
+        <h3>Principe</h3>
+
+        <ul>
+          <li>On lance un dé :
+            <ul>
+              <li>Si on obtient 6, le lièvre gagne</li>
+              <li>Si on obtient une autre valeur, la tortue avance d'un pas</li>
+            </ul>
+          </li>
+          <li>Si la tortue a avancé de six cases elle gagne, sinon on rejoue une autre fois.</li>
+        </ul>
+
+        <div>
+          <div class="row">
+            <div class="col-sm-4">
+              <figure>
+                <img src="images/seance03/lievre.jpg" alt="Le lièvre">
+                <figcaption>Lièvre</figcaption>
+              </figure>
+            </div>
+            <div class="col-sm-4">
+              <figure>
+                <img src="images/seance03/tortue.jpg" alt="La tortue">
+                <figcaption>Tortue</figcaption>
+              </figure>
+            </div>
+            <div class="col-sm-4">
+              <figure>
+                <img src="images/seance03/de.jpg" alt="Un dé">
+                <figcaption>Dé</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Activité débranchée</h3>
+
+        <h4>Simulation</h4>
+
+        <div id="turtle_rabbit_game">
+          <div class="chemin">
+            <div class="case-depart" v-bind:class="{'lievre': rabbit_pos === 0}"></div>
+            <div class="case" v-bind:class="{'lievre': rabbit_pos === 1}"></div>
+            <div class="case" v-bind:class="{'lievre': rabbit_pos === 2}"></div>
+            <div class="case" v-bind:class="{'lievre': rabbit_pos === 3}"></div>
+            <div class="case" v-bind:class="{'lievre': rabbit_pos === 4}"></div>
+            <div class="case" v-bind:class="{'lievre': rabbit_pos === 5}"></div>
+            <div class="case-arrivee" v-bind:class="{'lievre': rabbit_pos === 6}"></div>
+          </div>
+          <div class="chemin">
+            <div class="case-depart" v-bind:class="{'tortue': turtle_pos === 0}"></div>
+            <div class="case" v-bind:class="{'tortue': turtle_pos === 1}"></div>
+            <div class="case" v-bind:class="{'tortue': turtle_pos === 2}"></div>
+            <div class="case" v-bind:class="{'tortue': turtle_pos === 3}"></div>
+            <div class="case" v-bind:class="{'tortue': turtle_pos === 4}"></div>
+            <div class="case" v-bind:class="{'tortue': turtle_pos === 5}"></div>
+            <div class="case-arrivee" v-bind:class="{'tortue': turtle_pos === 6}"></div>
+          </div>
+          <div class="dice-roll">
+            <div class="de" v-on:click="clicked()">
+              <div v-bind:class="current_dice"></div>
+            </div>
+            <div class="text-center text-white">Cliquer &uArr;</div>
+          </div>
+          <div v-if="game_ended()" class="game-control">
+            <div class="message">
+              <div class="text">
+                <p>{{winner_message}}</p>
+                <button v-on:click="reset()">Rejouer</button>
+              </div>
+            </div>
+          </div>
+          <table class="dice-table">
+            <tbody>
+              <tr>
+                <td v-for="de in dice_arr" width="16.67%">
+                  <div class="de">
+                    <div v-bind:class="{[`de${de}`]: true}"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Exemple 1</h4>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Essai</td>
+              <td></td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td width="12.5%">
+                Dé
+              </td>
+              <td width="12.5%"></td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de5"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de3"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de1"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de2"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de1"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de4"></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Position Tortue</td>
+              <td>0</td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+            </tr>
+            <tr>
+              <td>Position Lièvre</td>
+              <td>0</td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+            </tr>
+            <tr>
+              <td>gagnant ?</td>
+              <td colspan="7"><input type="text" class="form-control save-content" placeholder="---"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Exemple 2</h4>
+
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Essai</td>
+              <td></td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td width="12.5%">
+                Dé
+              </td>
+              <td width="12.5%"></td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de2"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de4"></div>
+                </div>
+              </td>
+              <td width="12.5%">
+                <div class="de border">
+                  <div class="de6"></div>
+                </div>
+              </td>
+              <td width="37.5%"></td>
+            </tr>
+            <tr>
+              <td>Position Tortue</td>
+              <td>0</td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Position Lièvre</td>
+              <td>0</td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td><input type="text" class="form-control save-content" placeholder="---"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>gagnant ?</td>
+              <td colspan="5"><input type="text" class="form-control save-content" placeholder="---"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Scénario</h3>
+
+        <h4>Compréhension</h4>
+
+        <ol>
+          <li>
+            Quand est-ce que le lièvre gagne ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Quand est-ce que la tortue gagne ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Quand est-ce que le jeu se termine ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Comment le lièvre peut-il atteindre la position d'arrivée ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Comment la tortue peut-elle atteindre la position d'arrivée ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Quand est-ce que la tortue avance d'une case ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Quel est le nombre minimal de lancements de dé pour terminer la partie ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+          <li>
+            Quel est le nombre maximal de lancements de dé pour terminer la partie ?
+            <input type="text" class="form-control save-content" placeholder="---">
+          </li>
+        </ol>
+
+        <h4>Etapes</h4>
+
+        <ol type="a" class="order-items-exercise"
+          data-enonce="Ordonner les étapes d'exécution d'après les examples donnés précédemment." data-isnumbered="true"
+          hidden>
+          <li data-ordre="5">Afficher le gagnant</li>
+          <li data-ordre="1">Mettre le lièvre et la tortue sont en position de départ</li>
+          <li data-ordre="3">Faire avancer la tortue d'une case et afficher sa position, si <code>de &ne; 6</code>,
+            sinon faire avancer le lapin à la 6ème case,</li>
+          <li data-ordre="2">Lancer un dé et afficher sa valeur</li>
+          <li data-ordre="4" data-place="true">répéter les étapes 2, 3, jusqu'à un des joueurs ait atteint la position
+            d'arrivée</li>
+        </ol>
+      </section>
+    </article>
+
+    <article>
+      <h2>Break de savoir</h2>
+
+      <section>
+        <h3>Affectation</h3>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <pre><code class="language-algorithm">// Initialisation avec une constante
+xa &larr; 1
+ya &larr; 1
+xb &larr; 5
+yb &larr; 3
+// Initialisation avec une expression
+dist &larr; racine((xb-xa)**2 + (yb-ya)**2)</code></pre>
+          </div>
+          <div class="col-sm-6">
+            <pre><code class="language-python"># Initialisation avec une constante
+xa = 1
+ya = 1
+xb = 5
+yb = 3
+// Initialisation avec une expression
+dist = racine((xb-xa)**2 + (yb-ya)**2)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Types de données</h3>
+
+        <p>Les variables possèdent :</p>
+        <ul>
+          <li>Un nom</li>
+          <li>Un type</li>
+          <li>Une valeur</li>
+        </ul>
+        <div>
+          <figure>
+            <img src="images/seance03/affectation01.png" alt="Explication affectation">
+            <figcaption>Affectation</figcaption>
+          </figure>
+        </div>
+        <p>Parmi les types usuels :</p>
+        <ul>
+          <li>Entier</li>
+          <li>Réel</li>
+          <li>Booléen</li>
+          <li>Caractère</li>
+          <li>Chaîne de caractères</li>
+        </ul>
+        <div class="row">
+          <div class="col-sm-6">
+            <pre><code class="language-algorithm">// Types de variables
+// type Entier
+age &larr; 16
+// type Réel
+moyenne &larr; 14.25
+// type Booléen
+admis &larr; moyenne &ge; 10
+// type Caractère
+lettre &larr; "m"
+// type Chaîne
+nom &larr; "Ajmi"</code></pre>
+          </div>
+          <div class="col-sm-6">
+            <pre><code class="language-python"># Types de variables
+# type int
+age = 16
+# type float
+moyenne = 14.25
+# type bool
+admis = moyenne &gt;= 10
+// type str
+lettre = "m"
+// type str
+nom = "Ajmi"</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Choix d'une valeur aléatoire</h3>
+
+        <div class="no-page-break-inside">
+          <p class="explication">Choix d'un nombre dans un intervalle</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">
+// Nbre aléatoire dans l'intervalle [10, 99]
+na &larr; alea(10, 99)
+Ecrire("Valeur sélectionnée :", na)</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">from random import randint
+# Nbre aléatoire dans l'intervalle [10, 99]
+na = randint(10, 99)
+print("Valeur sélectionnée :", na)</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Structures conditionnelles</h3>
+
+        <h4>Forme simple</h4>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">
+// Nbre dans l'intervalle [0.0, 20.0]
+moy &larr; alea(0, 200) / 10
+Ecrire("Moyenne :", moy)
+// Vérifier si la moyenne est excellente
+Si moy &ge; 17 Alors
+  Ecrire("Excellente moyenne")
+Fin Si</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">from random import randint
+# Nbre dans l'intervalle [0.0, 20.0]
+moy = randint(0, 200) / 10
+print("Moyenne :", moy)
+# Vérifier si la moyenne est excellente
+if moy >= 17:
+  print("Excellente moyenne :", moy)
+ </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h4>Forme alternative</h4>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">
+// Nbre dans l'intervalle [0.0, 20.0]
+moy &larr; alea(0, 200) / 10
+Ecrire("Moyenne :", moy)
+// Vérifier si l'élève est admis ou refusé
+Si moy &ge; 10 Alors
+  Ecrire("- Admis")
+Sinon
+  Ecrire("- Refusé")
+Fin Si</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">from random import randint
+# Nbre dans l'intervalle [0.0, 20.0]
+moy = randint(0, 200) / 10
+print("Moyenne :", moy)
+# Vérifier si l'élève est admis ou refusé
+if moy >= 10:
+  print("- Admis")
+else:
+  print("- Refusé")
+ </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h4>Forme complète</h4>
+        <div class="no-page-break-inside">
+          <div class="row">
+            <div class="col-sm-6">
+              <pre><code class="language-algorithm">
+// Nbre dans l'intervalle [0.0, 20.0]
+moy &larr; alea(0, 200) / 10
+Ecrire("Moyenne :", moy)
+// Vérifier si l'élève est :
+// admis, contrôle ou refusé
+Si moy &ge; 10 Alors
+  Ecrire("- Admis")
+Sinon Si moy &ge; 8 Alors
+  Ecrire("- Contrôle")
+Sinon
+  Ecrire("- Refusé")
+Fin Si</code></pre>
+            </div>
+            <div class="col-sm-6">
+              <pre><code class="language-python">from random import randint
+# Nbre dans l'intervalle [0.0, 20.0]
+moy = randint(0, 200) / 10
+print("Moyenne :", moy)
+# Vérifier si l'élève est :
+# admis, contrôle ou refusé
+if moy >= 10:
+  print("- Admis")
+elif moy >= 8:
+  print("- Contrôle")
+else:
+  print("- Refusé")
+ </code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <article>
+      <h2>Implémentation</h2>
+
+      <section>
+        <h3>Mettre le lièvre et la tortue en position de départ</h3>
+
+        <p>On suppose que :</p>
+        <ul>
+          <li>La position de la tortue sera notée <code>pos_tortue</code></li>
+          <li>La position du lièvre sera notée <code>pos_lievre</code></li>
+          <li>La position de départ des deux joueurs est <code>0</code></li>
+        </ul>
+
+        <p>Initialiser les deux variables.</p>
+        <textarea class="form-control save-content"></textarea>
+
+        <h4>Break de savoir</h4>
+        <h5>Affectation</h5>
+
+        <h5>Types de données</h5>
+
+      </section>
+
+      <section>
+        <h3>Lancer un dé et afficher sa valeur</h3>
+
+        <p>On utilisera la variable <code>de</code> pour stocker la valeur du dé.</p>
+        <p>Ecrire le pseudo-code (algorithme) qui permet de simuler le lancement d'un dé à six faces, puis affiche la
+          valeur obtenue.</p>
+        <textarea class="form-control save-content"></textarea>
+      </section>
+
+      <section>
+        <h3>Faire avancer les joueurs</h3>
+
+        <p>Faire avancer les joueurs selon la valeur du <code>de</code> :</p>
+        <ul>
+          <li>Avancer la tortue d'une case et afficher sa position, si <code>de &ne; 6</code></li>
+          <li>Avancer le lapin à la 6ème case, si <code>de = 6</code></li>
+        </ul>
+
+        <p>Donner le pseudo-code (algorithme) qui fait avancer l'un des deux joueurs.</p>
+
+        <textarea class="form-control save-content"></textarea>
+      </section>
+
+      <section>
+        <h3>Répéter le lancement du dé</h3>
+
+        <p>Le lancement du dé et l'avancement des joueurs sont répétés autant de fois qu'il faut à l'un d'eux pour
+          atteindre la case d'arrivée.</p>
+        <p>Les opérations sont répétées jusqu'à ce que :</p>
+        <ul>
+          <li><code>pos_tortue est égale à 6</code></li>
+          <li>ou <code>pos_lievre est égale à 6</code></li>
+        </ul>
+
+        <p>Ecrire le pseudo-code qui permet de simuler cette opération :</p>
+        <textarea class="form-control save-content"></textarea>
+      </section>
+
+      <section>
+        <h3>Afficher le gagnant</h3>
+
+        <p>Afficher la gagnant, sachant que:</p>
+        <ul>
+          <li>La tortue gagne si son <code>pos_tortue est égale à 6</code></li>
+          <li>Le lièvre gagne si son <code>pos_lievre est égale à 6</code></li>
+        </ul>
+        <p>Ecrire le pseudo-code qui permet de simuler cette opération :</p>
+        <textarea class="form-control save-content"></textarea>
+      </section>
+    </article>
+  </main>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/highlight.pack.js"></script>
+  <script src="scripts/hljs.algorithm.js"></script>
+  <script src="scripts/draggable.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+  <script src="scripts/pages.js"></script>
+  <script src="scripts/savecontent.js"></script>
+  <script src="scripts/vue.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    document.querySelectorAll('.language-algorithm,.language-python')
+      .forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bd-clipboard d-print-none';
+        const btn = document.createElement('button');
+        btn.className = 'btn-clipboard';
+        btn.textContent = "📋";
+        btn.title = "Copier";
+        div.appendChild(btn);
+        item.parentElement.insertBefore(div, item);
+      });
+    new ClipboardJS('.btn-clipboard', {
+      target: (trigger) => {
+        return trigger.parentElement.nextElementSibling;
+      }
+    });
+    $(() => {
+      const localStore = new PagePersistance();
+      const serverStore = new ServerSaves('Seance 3');
+      const userInputSaver = new UserInputSaver(
+        document.querySelector('.user-input-saver'),
+        localStore,
+        serverStore);
+      new Vue({
+        el: '#turtle_rabbit_game',
+        data: {
+          turtle_winner: false,
+          rabbit_winner: false,
+          dice_face: 3,
+          rabbit_pos: 0,
+          turtle_pos: 0,
+          winner_message: '',
+          dice_arr: new Array(6).fill(0)
+        },
+        computed: {
+          current_dice: function () {
+            return { [`de${this.dice_face}`]: true };
+          }
+        },
+        mounted: function () {
+          this.reset();
+          do {
+            this.clicked();
+          } while (!this.game_ended());
+          this.$forceUpdate();
+        },
+        methods: {
+          reset: function () {
+            this.turtle_winner = false;
+            this.rabbit_winner = false;
+            this.dice_face = 1 + Math.floor(Math.random() * 6);
+            this.rabbit_pos = 0;
+            this.turtle_pos = 0;
+            this.winner_message = '';
+            this.dice_arr = new Array(6).fill(0);
+          },
+          game_ended: function () {
+            return this.turtle_winner || this.rabbit_winner;
+          },
+          clicked: function () {
+            if (this.game_ended()) {
+              return;
+            }
+
+            this.dice_face = 1 + Math.floor(Math.random() * 6);
+            this.dice_arr[this.turtle_pos] = this.dice_face;
+            if (this.dice_face == 6) {
+              this.rabbit_pos = 6;
+              this.rabbit_winner = true;
+              this.winner_message = 'Lièvre gagne';
+            } else {
+              this.turtle_pos += 1;
+              if (this.turtle_pos == 6) {
+                this.turtle_winner = true;
+                this.winner_message = 'Tortue gagne';
+              }
+            }
+            this.$forceUpdate();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
