@@ -12,7 +12,7 @@
   <style>
     .pointille {
       line-height: 0.75cm;
-      border-bottom: #333 dotted 3px;
+      border-bottom: #666 dotted 2px;
     }
 
     @media print {
@@ -98,7 +98,7 @@ Fin</code></pre>
 
         <h5 style="page-break-before: always;">Travail demandé</h5>
         <ol>
-          <li>Quelles sont les variables utilisées dans cet algorithme et quel sont leurs types. Compléter le tableau
+          <li>Quelles sont les variables utilisées dans cet algorithme et quels sont leurs types. Compléter le tableau
             suivant :
             <table class="table table-bordered">
               <thead>
@@ -195,13 +195,13 @@ Fin</code></pre>
         <div class="row">
           <div class="col-sm-6">
             <h4>Bandit Manchot</h4>
-            <p>C'est un jeu simple avec trois rouleaux de cinq symboles comportant, souvent, cinq images. (On suppose
-              que les images sont numérotées de 1 à 5)</p>
-              <p>La machine fonctionne comme suit :</p>
-              <ul>
-                <li>Le joueur mise un montant en dinars qu'il introduit dans la machine</li>
-                <li>Il tire un levier, les rouleaux se mettent à tourner puis s'arrêtent au bout d'un temps.</li>
-              </ul>
+            <p>C'est un jeu simple avec trois rouleaux de neuf symboles comportant, souvent, neuf images. (On suppose
+              que les images sont numérotées de 1 à 9)</p>
+            <p>La machine fonctionne comme suit :</p>
+            <ul>
+              <li>Le joueur mise un montant en dinars qu'il introduit dans la machine</li>
+              <li>Il tire un levier, les rouleaux se mettent à tourner puis s'arrêtent au bout d'un temps.</li>
+            </ul>
           </div>
           <div class="col-sm-6">
             <figure>
@@ -213,34 +213,39 @@ Fin</code></pre>
         <p>Les combinaisons gagnantes sont :</p>
         <div class="row">
           <div class="col-sm-3">
-            <p class="text-center">Trois 1</p>
+            <p class="text-center">111</p>
             <figure><img src="images/DS01/trois_un.png" alt="Trois 1"></figure>
             <p class="badge badge-success w-100 text-center p-2">gain = montant * 10</p>
           </div>
           <div class="col-sm-3">
-            <p class="text-center">Deux 1</p>
+            <p class="text-center">11c, 1b1, a11</p>
             <figure><img src="images/DS01/deux_un.png" alt="Deux 1"></figure>
             <p class="badge badge-success w-100 text-center p-2">gain = montant * 5</p>
           </div>
           <div class="col-sm-3">
-            <p class="text-center">Un 5</p>
-            <figure><img src="images/DS01/un_cinq.png" alt="Un 5"></figure>
+            <p class="text-center">55c, a55, 5b5</p>
+            <figure><img src="images/DS01/deux_cinq.png" alt="Deux 5"></figure>
             <p class="badge badge-success w-100 text-center p-2">gain = montant * 2</p>
           </div>
           <div class="col-sm-3">
             <p class="text-center">Autres</p>
-            <figure><img src="images/DS01/deux_un.png" alt="Autres"></figure>
+            <figure><img src="images/DS01/autres_comb.png" alt="Autres"></figure>
             <p class="badge badge-warning w-100 text-center p-2">gain = 0</p>
           </div>
         </div>
+        <p class="explication">Remarque :</p>
+        <ul>
+          <li><code>a</code>, <code>b</code> et <code>c</code> désignent des chiffres quelconques.</li>
+        </ul>
 
         <h5>Travail demandé</h5>
         <p>Ecrire un algorithme nommé <code>bandit_manchot</code> qui permet de :</p>
         <ul>
           <li>Saisir le <code>montant</code> misé</li>
-          <li>Générer trois valeurs aléatoires <code>a</code>, <code>b</code> et <code>c</code> entre 1 et 5</li>
+          <li>Générer trois valeurs aléatoires <code>a</code>, <code>b</code> et <code>c</code> entre 1 et 9</li>
           <li>Calculer le nombre <code>abc</code> à afficher par la machine</li>
-          <li>Calculer le <code>gain</code> selon les valeurs <code>a</code>, <code>b</code> et <code>c</code> d'après le tableau précédent</li>
+          <li>Calculer le <code>gain</code> selon les valeurs <code>a</code>, <code>b</code> et <code>c</code> d'après
+            le tableau précédent</li>
           <li>Afficher le <code>gain</code> du joueur</li>
         </ul>
 
