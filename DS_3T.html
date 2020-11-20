@@ -71,11 +71,14 @@
         <div>
           <pre><code class="language-algorithm">Algorithme Lievre_tortue_v2
 Début
+  // Mettre les joueurs en position de départ
   pos_lievre &larr; 0
   pos_tortue &larr; 0
   Répéter
+    // Lancer le dé
     de &larr; alea(1, 6)
     Ecrire("dé =", de)
+    // Avancer les joueurs en fonction du dé
     Si de &ne; 6 Alors 
       pas &larr; (de + 1) div 2
       pos_tortue &larr; pos_tortue + pas
@@ -87,7 +90,10 @@ Début
       pos_lievre &larr; pos_lievre + 4
       Ecrire("Position lièvre", pos_lievre)
     Fin Si
+  // Répéter les opérations précédentees
+  // Jusqu'à l'un des joueurs atteigne la position d'arrivée
   Jusqu'à (pos_lievre = 8) ou (pos_tortue = 8)
+  // Afficher le gagnant
   Si pos_tortue = 8 Alors
     Ecrire("La tortue gagne.")
   Sinon
